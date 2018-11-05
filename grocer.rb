@@ -1,6 +1,6 @@
 require 'pry'
 
-def consolidate_cart(cart)
+def consolidate_cart(cart:[])
   cart.each_with_object({}) do |original_hash, resulting_hash|
     original_hash.each do |item, attributes|
       if resulting_hash[item]
@@ -13,7 +13,7 @@ def consolidate_cart(cart)
   end
 end
 
-def apply_coupons(cart, coupons)
+def apply_coupons(cart:[], coupons:[])
   coupons.each do |coupon|
     name = coupon[:item]
     if cart[name] && cart[name][:count] >= coupon[:num]
@@ -29,7 +29,7 @@ def apply_coupons(cart, coupons)
   cart 
 end
 
-def apply_clearance(cart)
+def apply_clearance(cart:[])
   cart.each do |item, attributes|
     if attributes[:clearance] == true 
       attributes[:price] = (attributes[:price] * 0.80).round(2)
@@ -37,8 +37,8 @@ def apply_clearance(cart)
   end 
 end
 
-def checkout(cart, coupons:[])
-  consolidate_cart(cart:[])
-  apply_coupons(cart:[], coupons:[])
-  apply_clearance(cart:[])
+def checkout(cart:[], coupons:[])
+  consolidate_cart(cart)
+  apply_coupons(cart, coupons)
+  apply_clearance(cart)
 end
