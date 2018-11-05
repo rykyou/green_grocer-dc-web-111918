@@ -43,7 +43,7 @@ def checkout(cart, coupons)
   newest_cart = apply_clearance(newer_cart)
   total = 0.0
   newest_cart.each do |item, attributes|
-    total += (attributes[:price] * attributes[:count])
+    total = total += (attributes[:price] * attributes[:count])
     binding.pry
   end 
   if total > 100.0
