@@ -45,7 +45,6 @@ def checkout(cart, coupons)
   newest_cart.each do |item, attributes|
     total = total + (attributes[:price] * attributes[:count])
   end 
-  binding.pry
   if total > 100.0
     total -= (total * 0.1)
   end 
